@@ -12,10 +12,15 @@
 <body class="bg-gray-50 m-0 p-0">
     <header class="bg-gradient-to-r from-blue-200 to-blue-300 to bg-blue-500 sticky top-0 z-50 shadow">
       <nav class="container mx-auto px-4 py-4 flex justify-between items-center text-blue-950">
-        <a href="#" class="text-2xl sm:text-3xl font-bold">Artikelia</a>
+        <p class="text-2xl sm:text-3xl font-bold">Artikelia</p>
         <ul class="flex space-x-4 sm:space-x-6 items-center text-sm sm:text-base">
           <li><a href="{{ route('admin.dashboard') }}" class="hover:underline font-semibold">Kembali</a></li>
-          <li><a href="#" class="px-4 py-1 border border-blue-950 rounded-xl font-semibold hover:bg-blue-200 hover:text-blue-950 transition">Logout</a></li>
+          <li>
+            <form action="{{ route('logout') }}" method="POST">
+              @csrf
+              <button type="submit" class="px-4 py-1 border border-blue-950 rounded-xl font-semibold hover:bg-blue-200 hover:text-blue-950 transition">Logout</button>
+            </form>
+          </li>
         </ul>
       </nav>
     </header>
@@ -91,6 +96,7 @@
             <div>
                 <label for="status" class="font-semibold block mb-1">Status</label>
                 <select id="status" name="status" class="w-full p-3 border rounded-lg">
+                    <option value="">-- Pilih Status --</option>
                     <option value="Draft" {{ old('status') == 'Draft' ? 'selected' : '' }}>Draft</option>
                     <option value="Published" {{ old('status') == 'Published' ? 'selected' : '' }}>Published</option>
                     <option value="Archived" {{ old('status') == 'Archived' ? 'selected' : '' }}>Archived</option>

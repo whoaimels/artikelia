@@ -10,10 +10,15 @@
 <body class="bg-gray-50 m-0 p-0">
   <header class="bg-gradient-to-r from-blue-200 to-blue-300 to bg-blue-500 sticky top-0 z-50 shadow">
     <nav class="container mx-auto px-4 py-4 flex justify-between items-center text-blue-950">
-      <a href="#" class="text-2xl sm:text-3xl font-bold">Artikelia</a>
+      <p class="text-2xl sm:text-3xl font-bold">Artikelia</p>
       <ul class="flex space-x-4 sm:space-x-6 items-center text-sm sm:text-base">
         <li><a href="{{ route('create') }}" class="hover:underline font-semibold">Tambah</a></li>
-        <li><a href="#" class="px-4 py-1 border border-blue-950 rounded-xl font-semibold hover:bg-blue-200 hover:text-blue-950 transition">Logout</a></li>
+        <li>
+          <form action="{{ route('logout') }}" method="POST">
+            @csrf
+            <button type="submit" class="px-4 py-1 border border-blue-950 rounded-xl font-semibold hover:bg-blue-200 hover:text-blue-950 transition">Logout</button>
+          </form>
+        </li>
       </ul>
     </nav>
   </header>
@@ -25,12 +30,12 @@
 
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
         @foreach ($artikels as $artikel)
-          <div class="w-full bg-white rounded-xl shadow-xl overflow-hidden p-4 sm:p-6 hover:scale-105 transition duration-200">
+          <div class="w-full bg-white rounded-xl shadow-xl overflow-hidden p-4 sm:p-6 hover:scale-105 transition duration-200 cursor-pointer"  onclick= "window.location='{{ route('read', $artikel->id) }}'" >
             <div class="flex flex-col sm:flex-row gap-4 sm:gap-6">
               <img src="{{ asset('storage/' . $artikel->thumbnail) }}" alt="foto" class="rounded-md bg-gray-100 w-full sm:w-36 h-36 object-cover" />
         
               <div class="flex flex-col justify-between w-full relative">
-                <div class="flex flex-col sm:flex-row absolute top-2 right-2 sm:top-4 sm:right-4 space-y-2 sm:space-y-0 sm:space-x-3">
+                <div class="flex flex-col sm:flex-row absolute sm:top-1 sm:right-4 space-y-2 sm:space-y-0 sm:space-x-3">
                   <a href="{{ route('edit', $artikel->id) }}">
                     <img src="{{ asset('images/edit.png') }}" alt="edit" class="w-4 h-4 hover:scale-110 transition duration-200">
                   </a>                

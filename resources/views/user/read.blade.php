@@ -12,7 +12,7 @@
   <div class="bg-gradient-to-r from-blue-200 to-blue-300 to bg-blue-500 text-white sticky top-0 z-50 shadow">
     <div class="container mx-auto px-4 py-4 flex justify-between items-center text-blue-950">
       <p class="text-2xl sm:text-3xl font-bold">Artikelia</p>
-      <a href="{{ route('admin.dashboard') }}" class="hover:underline font-semibold mr-15">Kembali</a>
+      <a href="{{ route('user.dashboard') }}" class="hover:underline font-semibold mr-15">Kembali</a>
     </div>
   </div>
 
