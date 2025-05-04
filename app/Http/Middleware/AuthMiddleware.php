@@ -17,15 +17,17 @@ class AuthMiddleware
      * @return mixed
      */
     public function handle(Request $request, Closure $next, string $role = null)
-    {
-        if (!Auth::check()) { //kalau di cek belum login
-            return redirect()->route('login'); //maka dikirimkan ke halaman login
-        }
-
-       
-
-        return $next($request);
+{
+    if (!Auth::check()) {
+        return redirect()->route('login');
     }
+
+    if ($role && Auth::user()->role !== $role) {
+        $redirectRoute = Auth::user()->role === 'admin' ? 'admin.dashboard' : 'user.dashboard';
+        return redirect()->route($redirectRoute);
+    }
+
+    return $next($request);
 }
 
-
+}
