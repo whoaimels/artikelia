@@ -39,13 +39,13 @@
                   <a href="{{ route('edit', $artikel->id) }}">
                     <img src="{{ asset('images/edit.png') }}" alt="edit" class="w-4 h-4 hover:scale-110 transition duration-200">
                   </a>                
-                  <form action="{{ route('destroy', $artikel->id) }}" method="POST" onsubmit="return confirm('Yakin mau hapus?')">
+                  <form action="{{ route('destroy', $artikel->id) }}" method="POST" onsubmit="event.stopPropagation(); return confirm('Yakin mau hapus?')">
                     @csrf
                     @method('DELETE')
-                    <button type="submit">
-                      <img src="{{ asset('images/delete.png') }}" alt="delete" class="w-4 h-4 hover:scale-110 transition duration-200">
+                    <button type="submit" onclick="event.stopPropagation();">
+                        <img src="{{ asset('images/delete.png') }}" alt="delete" class="w-4 h-4 hover:scale-110 transition duration-200">
                     </button>
-                  </form>
+                </form>                
                 </div>
               
                 <div class="pr-10 sm:pr-0">
